@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BLOOMÉ — Luxury Flowers & Gifts. Extraordinary blooms thoughtfully arranged for life's most beautiful moments.">
+  <title>BLOOMÉ — Luxury Flowers & Gifts</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ==================== PRELOADER ==================== -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-inner">
+      <div class="preloader-logo">BLOOMÉ</div>
+      <div class="preloader-flower">
+        <svg viewBox="0 0 60 60" width="48" height="48">
+          <path class="petal" d="M30 10 C35 20, 40 25, 30 35 C20 25, 25 20, 30 10" fill="none" stroke="currentColor" stroke-width="1.2"/>
+          <path class="petal" d="M30 10 C35 20, 40 25, 30 35 C20 25, 25 20, 30 10" fill="none" stroke="currentColor" stroke-width="1.2" transform="rotate(72 30 30)"/>
+          <path class="petal" d="M30 10 C35 20, 40 25, 30 35 C20 25, 25 20, 30 10" fill="none" stroke="currentColor" stroke-width="1.2" transform="rotate(144 30 30)"/>
+          <path class="petal" d="M30 10 C35 20, 40 25, 30 35 C20 25, 25 20, 30 10" fill="none" stroke="currentColor" stroke-width="1.2" transform="rotate(216 30 30)"/>
+          <path class="petal" d="M30 10 C35 20, 40 25, 30 35 C20 25, 25 20, 30 10" fill="none" stroke="currentColor" stroke-width="1.2" transform="rotate(288 30 30)"/>
+          <circle cx="30" cy="30" r="3" fill="currentColor"/>
+        </svg>
+      </div>
+      <div class="preloader-line">
+        <div class="preloader-progress"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CUSTOM CURSOR ==================== -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- ==================== NAVIGATION ==================== -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="#home" class="nav-logo">BLOOMÉ</a>
+      
+      <div class="nav-menu" id="navMenu">
+        <ul class="nav-list">
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#shop" class="nav-link">Shop</a></li>
+          <li><a href="#collections" class="nav-link">Collections</a></li>
+          <li><a href="#occasions" class="nav-link">Occasions</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </div>
+      
+      <div class="nav-actions">
+        <button class="nav-icon" id="searchBtn" aria-label="Search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+        <button class="nav-icon" id="wishlistBtn" aria-label="Wishlist">
+          <i class="fa-regular fa-heart"></i>
+          <span class="wishlist-count" id="wishlistCount">0</span>
+        </button>
+        <button class="nav-icon" id="cartBtn" aria-label="Shopping bag">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+        <button class="nav-toggle" id="navToggle" aria-label="Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ==================== SEARCH OVERLAY ==================== -->
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-container">
+      <button class="search-close" id="searchClose" aria-label="Close search">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="search-input-wrap">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="Search flowers, bouquets, occasions..." autocomplete="off">
+      </div>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+
+  <!-- ==================== CART PANEL ==================== -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-panel" id="cartPanel">
+    <div class="cart-header">
+      <h3>Your Bag</h3>
+      <button class="cart-close" id="cartClose" aria-label="Close cart">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <!-- Cart items injected by JS -->
+    </div>
+    <div class="cart-footer">
+      <div class="cart-subtotal">
+        <span>Subtotal</span>
+        <span id="cartSubtotal">₹0</span>
+      </div>
+      <button class="btn btn-primary btn-full" id="checkoutBtn">Checkout</button>
+      <p class="cart-note">Complimentary delivery on orders above ₹4,999</p>
+    </div>
+  </aside>
+
+  <!-- ==================== NOTIFICATION ==================== -->
+  <div class="notification" id="notification">
+    <span id="notificationText">Added to your bag ✨</span>
+  </div>
+
+  <!-- ==================== BACK TO TOP ==================== -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main>
+    <!-- ==================== HERO ==================== -->
+    <section class="hero" id="home">
+      <div class="hero-bg">
+        <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=1920&q=80" alt="Luxurious flower arrangement" class="hero-image" loading="eager">
+        <div class="hero-overlay"></div>
+      </div>
+      <div class="hero-content">
+        <p class="hero-label reveal">Luxury Flowers & Gifts</p>
+        <h1 class="hero-title">
+          <span class="reveal-line"><span>Flowers, Curated</span></span>
+          <span class="reveal-line"><span>With Emotion.</span></span>
+        </h1>
+        <p class="hero-subtitle reveal">Extraordinary blooms thoughtfully arranged for life's most beautiful moments.</p>
+        <div class="hero-btns reveal">
+          <a href="#collections" class="btn btn-primary">Explore Collection</a>
+          <a href="#builder" class="btn btn-outline">Create Your Bouquet</a>
+        </div>
+      </div>
+      <div class="hero-scroll">
+        <span>Scroll to Discover</span>
+        <div class="scroll-line"></div>
+      </div>
+      <div class="hero-float hero-float-1"></div>
+      <div class="hero-float hero-float-2"></div>
+    </section>
+
+    <!-- ==================== FEATURED COLLECTIONS ==================== -->
+    <section class="collections section" id="collections">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label reveal">Collections</p>
+          <h2 class="section-title reveal">The Art of Flowers</h2>
+          <p class="section-subtitle reveal">Thoughtfully designed arrangements for every unforgettable moment.</p>
+        </div>
+        <div class="collections-grid">
+          <article class="collection-card reveal">
+            <div class="collection-image">
+              <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&q=80" alt="Romantic Roses collection" loading="lazy">
+              <div class="collection-overlay">
+                <a href="#shop" class="collection-link">Explore <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+            <div class="collection-info">
+              <h3>Romantic Roses</h3>
+              <p>Luxury roses and elegant arrangements.</p>
+            </div>
+          </article>
+          <article class="collection-card reveal">
+            <div class="collection-image">
+              <img src="https://images.unsplash.com/photo-1462275646964-a0e3386b89fa?w=800&q=80" alt="Wild Garden collection" loading="lazy">
+              <div class="collection-overlay">
+                <a href="#shop" class="collection-link">Explore <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+            <div class="collection-info">
+              <h3>Wild Garden</h3>
+              <p>Natural, organic seasonal flowers.</p>
+            </div>
+          </article>
+          <article class="collection-card reveal">
+            <div class="collection-image">
+              <img src="https://images.unsplash.com/photo-1455659817273-f96807726504?w=800&q=80" alt="Eternal Blooms collection" loading="lazy">
+              <div class="collection-overlay">
+                <a href="#shop" class="collection-link">Explore <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+            <div class="collection-info">
+              <h3>Eternal Blooms</h3>
+              <p>Premium preserved flowers.</p>
+            </div>
+          </article>
+          <article class="collection-card reveal">
+            <div class="collection-image">
+              <img src="https://images.unsplash.com/photo-1525310072745-f81672f6681c?w=800&q=80" alt="Celebration collection" loading="lazy">
+              <div class="collection-overlay">
+                <a href="#shop" class="collection-link">Explore <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+            <div class="collection-info">
+              <h3>Celebration</h3>
+              <p>Bright arrangements for special occasions.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== BEST SELLERS ==================== -->
+    <section class="bestsellers section" id="shop">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label reveal">Bestsellers</p>
+          <h2 class="section-title reveal">Most Loved Blooms</h2>
+          <p class="section-subtitle reveal">Hand-selected arrangements that capture hearts.</p>
+        </div>
+        <div class="products-grid" id="productsGrid">
+          <!-- Products injected by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== OCCASIONS ==================== -->
+    <section class="occasions section" id="occasions">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label reveal">Occasions</p>
+          <h2 class="section-title reveal">For Every Feeling</h2>
+        </div>
+        <div class="occasions-grid">
+          <a href="#shop" class="occasion-card reveal" data-occasion="love">
+            <img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=600&q=80" alt="Love" loading="lazy">
+            <div class="occasion-overlay">
+              <span class="occasion-icon">❤️</span>
+              <h3>Love</h3>
+              <span class="occasion-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </a>
+          <a href="#shop" class="occasion-card reveal" data-occasion="birthday">
+            <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=600&q=80" alt="Birthday" loading="lazy">
+            <div class="occasion-overlay">
+              <span class="occasion-icon">🎂</span>
+              <h3>Birthday</h3>
+              <span class="occasion-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </a>
+          <a href="#shop" class="occasion-card reveal" data-occasion="wedding">
+            <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&q=80" alt="Wedding" loading="lazy">
+            <div class="occasion-overlay">
+              <span class="occasion-icon">💍</span>
+              <h3>Wedding</h3>
+              <span class="occasion-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </a>
+          <a href="#shop" class="occasion-card reveal" data-occasion="anniversary">
+            <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=600&q=80" alt="Anniversary" loading="lazy">
+            <div class="occasion-overlay">
+              <span class="occasion-icon">🌸</span>
+              <h3>Anniversary</h3>
+              <span class="occasion-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </a>
+          <a href="#shop" class="occasion-card reveal" data-occasion="congratulations">
+            <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=600&q=80" alt="Congratulations" loading="lazy">
+            <div class="occasion-overlay">
+              <span class="occasion-icon">🎓</span>
+              <h3>Congratulations</h3>
+              <span class="occasion-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </a>
+          <a href="#shop" class="occasion-card reveal" data-occasion="justbecause">
+            <img src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=600&q=80" alt="Just Because" loading="lazy">
+            <div class="occasion-overlay">
+              <span class="occasion-icon">✨</span>
+              <h3>Just Because</h3>
+              <span class="occasion-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SIGNATURE BOUQUET ==================== -->
+    <section class="signature section" id="about">
+      <div class="signature-inner">
+        <div class="signature-image reveal-left">
+          <img src="https://images.unsplash.com/photo-1561181286-d3fee7f45375?w=900&q=80" alt="BLOOMÉ signature bouquet" loading="lazy">
+        </div>
+        <div class="signature-content reveal-right">
+          <p class="signature-label">BLOOMÉ SIGNATURE</p>
+          <h2 class="signature-title">More Than Flowers.<br>A Feeling Delivered.</h2>
+          <p class="signature-text">
+            At BLOOMÉ, every stem is chosen with intention. We believe flowers are more than decoration — they are emotion made visible. From the quiet elegance of a single rose to the exuberance of a grand celebration arrangement, each creation is a carefully composed moment of beauty.
+          </p>
+          <p class="signature-text">
+            Sourced from the finest growers and arranged by artisans who understand the language of blooms, our flowers arrive ready to speak for you.
+          </p>
+          <a href="#contact" class="btn-text">Discover Our Story <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CUSTOM BOUQUET BUILDER ==================== -->
+    <section class="builder section" id="builder">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label reveal">Custom</p>
+          <h2 class="section-title reveal">Create Your Perfect Bouquet</h2>
+          <p class="section-subtitle reveal">Design a one-of-a-kind arrangement tailored to your moment.</p>
+        </div>
+        <div class="builder-grid">
+          <div class="builder-options reveal">
+            <div class="builder-group">
+              <h4>Flower</h4>
+              <div class="option-pills" data-group="flower">
+                <button class="option-pill active" data-value="roses" data-price="0">Roses</button>
+                <button class="option-pill" data-value="tulips" data-price="200">Tulips</button>
+                <button class="option-pill" data-value="lilies" data-price="350">Lilies</button>
+                <button class="option-pill" data-value="peonies" data-price="500">Peonies</button>
+                <button class="option-pill" data-value="sunflowers" data-price="150">Sunflowers</button>
+              </div>
+            </div>
+            <div class="builder-group">
+              <h4>Color</h4>
+              <div class="option-pills" data-group="color">
+                <button class="option-pill active" data-value="white" data-price="0">White</button>
+                <button class="option-pill" data-value="pink" data-price="0">Pink</button>
+                <button class="option-pill" data-value="red" data-price="100">Red</button>
+                <button class="option-pill" data-value="purple" data-price="150">Purple</button>
+                <button class="option-pill" data-value="yellow" data-price="0">Yellow</button>
+              </div>
+            </div>
+            <div class="builder-group">
+              <h4>Size</h4>
+              <div class="option-pills" data-group="size">
+                <button class="option-pill" data-value="petite" data-price="-500">Petite</button>
+                <button class="option-pill active" data-value="classic" data-price="0">Classic</button>
+                <button class="option-pill" data-value="grand" data-price="800">Grand</button>
+              </div>
+            </div>
+            <div class="builder-group">
+              <h4>Wrapping</h4>
+              <div class="option-pills" data-group="wrapping">
+                <button class="option-pill active" data-value="ivory" data-price="0">Ivory</button>
+                <button class="option-pill" data-value="sage" data-price="50">Sage</button>
+                <button class="option-pill" data-value="blush" data-price="50">Blush</button>
+                <button class="option-pill" data-value="black" data-price="150">Luxury Black</button>
+              </div>
+            </div>
+          </div>
+          <div class="builder-summary reveal">
+            <div class="builder-preview">
+              <img id="builderImage" src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=600&q=80" alt="Custom bouquet preview" loading="lazy">
+            </div>
+            <div class="builder-price-box">
+              <p class="builder-label">Your Bouquet</p>
+              <p class="builder-price" id="builderPrice">₹2,999</p>
+              <ul class="builder-selection" id="builderSelection">
+                <li>Roses · White · Classic · Ivory</li>
+              </ul>
+              <button class="btn btn-primary btn-full" id="addCustomBtn">Add Custom Bouquet to Bag</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== GALLERY / INSTAGRAM ==================== -->
+    <section class="gallery section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label reveal">Gallery</p>
+          <h2 class="section-title reveal">Follow the Bloom</h2>
+          <p class="section-subtitle reveal"><a href="#" class="instagram-link">@bloomeflowers</a></p>
+        </div>
+        <div class="gallery-grid">
+          <a href="#" class="gallery-item reveal" data-index="0">
+            <img src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=500&q=80" alt="Gallery image 1" loading="lazy">
+            <div class="gallery-overlay"><i class="fa-brands fa-instagram"></i></div>
+          </a>
+          <a href="#" class="gallery-item reveal" data-index="1">
+            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&q=80" alt="Gallery image 2" loading="lazy">
+            <div class="gallery-overlay"><i class="fa-brands fa-instagram"></i></div>
+          </a>
+          <a href="#" class="gallery-item reveal" data-index="2">
+            <img src="https://images.unsplash.com/photo-1462275646964-a0e3386b89fa?w=500&q=80" alt="Gallery image 3" loading="lazy">
+            <div class="gallery-overlay"><i class="fa-brands fa-instagram"></i></div>
+          </a>
+          <a href="#" class="gallery-item reveal" data-index="3">
+            <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=500&q=80" alt="Gallery image 4" loading="lazy">
+            <div class="gallery-overlay"><i class="fa-brands fa-instagram"></i></div>
+          </a>
+          <a href="#" class="gallery-item reveal" data-index="4">
+            <img src="https://images.unsplash.com/photo-1455659817273-f96807726504?w=500&q=80" alt="Gallery image 5" loading="lazy">
+            <div class="gallery-overlay"><i class="fa-brands fa-instagram"></i></div>
+          </a>
+          <a href="#" class="gallery-item reveal" data-index="5">
+            <img src="https://images.unsplash.com/photo-1525310072745-f81672f6681c?w=500&q=80" alt="Gallery image 6" loading="lazy">
+            <div class="gallery-overlay"><i class="fa-brands fa-instagram"></i></div>
+          </a>
+          <a href="#" class="gallery-item reveal" data-index="6">
+            <img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=500&q=80" alt="Gallery image 7" loading="lazy">
+            <div class="gallery-overlay"><i class="fa-brands fa-instagram"></i></div>
+          </a>
+          <a href="#" class="gallery-item reveal" data-index="7">
+            <img src="https://images.unsplash.com/photo-1561181286-d3fee7f45375?w=500&q=80" alt="Gallery image 8" loading="lazy">
+            <div class="gallery-overlay"><i class="fa-brands fa-instagram"></i></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TESTIMONIALS ==================== -->
+    <section class="testimonials section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label reveal">Testimonials</p>
+          <h2 class="section-title reveal">Words of Love</h2>
+        </div>
+        <div class="testimonials-carousel">
+          <div class="testimonials-track" id="testimonialsTrack">
+            <div class="testimonial-slide active">
+              <blockquote>
+                “Absolutely breathtaking. The bouquet looked even more beautiful than the photographs. The scent filled the entire room.”
+              </blockquote>
+              <cite>— Ananya R.</cite>
+            </div>
+            <div class="testimonial-slide">
+              <blockquote>
+                “Every detail felt luxurious, from the flowers to the packaging. BLOOMÉ has become our go-to for every special moment.”
+              </blockquote>
+              <cite>— Meera K.</cite>
+            </div>
+            <div class="testimonial-slide">
+              <blockquote>
+                “BLOOMÉ made our anniversary unforgettable. The arrangement was pure poetry — elegant, romantic, and perfectly timed.”
+              </blockquote>
+              <cite>— Arjun & Priya</cite>
+            </div>
+            <div class="testimonial-slide">
+              <blockquote>
+                “I ordered a custom bouquet for my mother’s birthday. The attention to colour and texture was extraordinary. She was moved to tears.”
+              </blockquote>
+              <cite>— Kabir S.</cite>
+            </div>
+          </div>
+          <div class="testimonials-controls">
+            <button class="testimonial-btn" id="testimonialPrev" aria-label="Previous testimonial">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <div class="testimonial-dots" id="testimonialDots"></div>
+            <button class="testimonial-btn" id="testimonialNext" aria-label="Next testimonial">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== NEWSLETTER ==================== -->
+    <section class="newsletter section" id="contact">
+      <div class="newsletter-bg"></div>
+      <div class="container">
+        <div class="newsletter-content reveal">
+          <h2 class="newsletter-title">Stay in Bloom.</h2>
+          <p class="newsletter-text">Receive seasonal inspiration, exclusive collections and beautiful surprises.</p>
+          <form class="newsletter-form" id="newsletterForm">
+            <div class="newsletter-input-wrap">
+              <input type="email" id="newsletterEmail" placeholder="Your email address" required aria-label="Email address">
+              <button type="submit" class="btn btn-primary">Subscribe</button>
+            </div>
+            <p class="newsletter-message" id="newsletterMessage"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#home" class="footer-logo">BLOOMÉ</a>
+          <p class="footer-tagline">Flowers curated with emotion.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>Shop</h4>
+            <ul>
+              <li><a href="#shop">All Flowers</a></li>
+              <li><a href="#shop">Best Sellers</a></li>
+              <li><a href="#collections">New Arrivals</a></li>
+              <li><a href="#builder">Custom Bouquets</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Discover</h4>
+            <ul>
+              <li><a href="#about">Our Story</a></li>
+              <li><a href="#">Journal</a></li>
+              <li><a href="#occasions">Weddings</a></li>
+              <li><a href="#">Corporate Gifting</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Help</h4>
+            <ul>
+              <li><a href="#contact">Contact</a></li>
+              <li><a href="#">Delivery</a></li>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Returns</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 BLOOMÉ. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== PRODUCT QUICK VIEW MODAL ==================== -->
+  <div class="modal-overlay" id="modalOverlay"></div>
+  <div class="modal" id="productModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal-close" id="modalClose" aria-label="Close modal">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div class="modal-content">
+      <div class="modal-image">
+        <img id="modalImage" src="" alt="">
+      </div>
+      <div class="modal-info">
+        <p class="modal-label" id="modalLabel">Signature Collection</p>
+        <h2 class="modal-title" id="modalTitle"></h2>
+        <div class="modal-rating" id="modalRating"></div>
+        <p class="modal-price" id="modalPrice"></p>
+        <p class="modal-desc" id="modalDesc"></p>
+        <div class="modal-qty">
+          <label>Quantity</label>
+          <div class="qty-controls">
+            <button class="qty-btn" id="qtyMinus" aria-label="Decrease quantity">−</button>
+            <span id="qtyValue">1</span>
+            <button class="qty-btn" id="qtyPlus" aria-label="Increase quantity">+</button>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-full" id="modalAddBtn">Add to Bag</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
